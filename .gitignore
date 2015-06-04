@@ -1,0 +1,8 @@
+.DS_Store
+/.boot/
+*.jar
+*.war
+pom.xml
+.repl-*
+.nrepl-*
+*.png
