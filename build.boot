@@ -3,11 +3,16 @@
   :dependencies '[[org.clojure/clojure         "1.6.0"          :scope "provided"]
                   [boot/core                   "2.0.0"          :scope "provided"]
                   [org.clojure/tools.namespace "0.2.10"         :scope "provided"]
-                  [rhizome                     "0.2.5"          :scope "provided"]])
+                  [rhizome                     "0.2.5"          :scope "provided"]
+                  [adzerk/bootlaces            "0.1.11"         :scope "test"]])
 
-(require '[hendrick.boot-medusa :refer :all])
+(require
+ '[adzerk.bootlaces :refer :all]
+ '[hendrick.boot-medusa :refer :all])
 
-(def +version+ "0.0.1")
+(def +version+ "0.0.2")
+
+(bootlaces! +version+)
 
 (task-options!
   pom {:project     'hendrick/boot-medusa
