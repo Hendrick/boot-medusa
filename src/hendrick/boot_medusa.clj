@@ -24,13 +24,13 @@
 
 ;; Add two local functions until they are added to `clojure.tools.namespace`.
 ;; See: http://dev.clojure.org/jira/browse/TNS-29?focusedCommentId=36741#comment-36741
-(defn clojurescript-file?
+(defn- clojurescript-file?
   "Returns true if the file represents a normal ClojureScript source file."
   [^File file]
   (and (.isFile file)
        (.endsWith (.getName file) ".cljs")))
 
-(defn find-sources-in-dir
+(defn- find-sources-in-dir
   "Searches recursively under dir for source files (.clj and .cljs).
   Returns a sequence of File objects, in breadth-first sort order."
   [dir]
@@ -41,7 +41,7 @@
                  (ns-file/clojure-file? %)))
     (sort-by #(.getAbsolutePath ^File %))))
 
-(defn file-deps
+(defn- file-deps
   "Calculates the dependency graph of the namespaces in the given files."
   [files]
   (->>
@@ -49,17 +49,17 @@
     (ns-file/add-files {})
     ::ns-track/deps))
 
-(defn file-namespaces
+(defn- file-namespaces
   "Calculates the namespaces defined by the given files."
   [files]
   (map (comp second ns-file/read-file-ns-decl) files))
 
-(defn ignored-ns?
+(defn- ignored-ns?
   [context n]
   (not (some #(.startsWith (str n) (str %))
              (:ignore-ns context))))
 
-(defn filter-ns
+(defn- filter-ns
   "Filters namespaces based on the context options."
   [context namespaces]
   (cond->> namespaces
@@ -68,21 +68,21 @@
     (:ignore-ns context)
     (filter (partial ignored-ns? context))))
 
-(defn graph-nodes
+(defn- graph-nodes
   [context]
   (->>
     (:graph context)
     ns-dep/nodes
     (filter-ns context)))
 
-(defn adjacent-to
+(defn- adjacent-to
   [context node]
   (->>
     node
     (ns-dep/immediate-dependencies (:graph context))
     (filter-ns context)))
 
-(defn node-cluster
+(defn- node-cluster
   [context node]
   (let [depth (:cluster-depth context)]
     (when (< 0 depth)
@@ -94,7 +94,7 @@
           (str/join \. parts)
           (when-not (empty? parts) parts))))))
 
-(defn render-node
+(defn- render-node
   [context node]
   (let [internal? (contains? (:internal-ns context) node)
         cluster (node-cluster context node)]
