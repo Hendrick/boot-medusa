@@ -1,5 +1,6 @@
 .DS_Store
 /.boot/
+/target
 *.jar
 *.war
 pom.xml
