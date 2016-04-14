@@ -1,16 +1,16 @@
 (set-env!
   :source-paths #{"src"}
-  :dependencies '[[org.clojure/clojure         "1.6.0"]
-                  [boot/core                   "2.0.0"]
-                  [org.clojure/tools.namespace "0.2.10"]
+  :dependencies '[[org.clojure/clojure         "1.7.0"]
+                  [boot/core                   "2.5.5"]
+                  [org.clojure/tools.namespace "0.2.11"]
                   [rhizome                     "0.2.5"]
-                  [adzerk/bootlaces            "0.1.11" :scope "test"]])
+                  [adzerk/bootlaces            "0.1.13" :scope "test"]])
 
 (require
  '[adzerk.bootlaces :refer :all]
  '[hendrick.boot-medusa :refer :all])
 
-(def +version+ "0.0.3")
+(def +version+ "0.1.0")
 
 (bootlaces! +version+)
 
