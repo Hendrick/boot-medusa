@@ -1,6 +1,6 @@
 (ns hendrick.boot-medusa
   {:boot/export-tasks true}
-  (:require [boot.core :as core :refer [deftask]]
+  (:require [boot.core :refer [deftask]]
             [clojure.java.io :as io]
             [clojure.string :as str]
             [clojure.set :as set]
